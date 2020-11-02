@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { ClockComponent } from './clock/clock.component';
 import { HomeComponent } from './home/home.component';
@@ -29,7 +31,13 @@ const routes: Routes = [
     ClockComponent,
     MaintenanceLogComponent
   ],
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule.forRoot(routes)],
+  exports: [
+    FormsModule,
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }
