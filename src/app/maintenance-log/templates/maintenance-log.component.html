@@ -15,7 +15,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let log of maintenanceLogs">
-          <!-- <th scope="row">1</th> -->
           <td>{{log.id}}</td>
           <td>{{log.entryDate | date}}</td>
           <td>{{log.item}}</td>
@@ -31,7 +30,7 @@
 <div class="row">
   <div class="col-md"></div>
   <div class="col-md">
-    <h1>create data entry form here</h1>
+    <h1>New Log Item</h1>
     <form>
       <div class="form-group">
         <label for="item">Item</label>

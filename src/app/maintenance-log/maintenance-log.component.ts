@@ -22,8 +22,8 @@ export class MaintenanceLogComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-  setLocalStorage() {
+
+  setLocalStorage(): void {
     if (localStorage.getItem(this.MAINTENANCE_LOG_DATA) === null) {
       this.saveToLocalStorage(JSON.stringify(maintenanceLogData));
     }
