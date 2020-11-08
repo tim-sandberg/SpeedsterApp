@@ -16,9 +16,10 @@
       <tbody>
         <tr *ngFor="let log of maintenanceLogs">
           <!-- <th scope="row">1</th> -->
-          <td>{{log.entryDate}}</td>
+          <td>{{log.id}}</td>
+          <td>{{log.entryDate | date}}</td>
           <td>{{log.item}}</td>
-          <td>{{log.cost}}</td>
+          <td>{{log.cost | currency}}</td>
           <td>{{log.place}}</td>
         </tr>
       </tbody>

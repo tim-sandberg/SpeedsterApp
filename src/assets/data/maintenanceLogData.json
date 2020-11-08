@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "item": "oil change",
+        "cost": 2.34,
+        "entryDate": "10/20/2020",
+        "place": "Lake Forest"
+    },
+    {
+        "id": 2,
+        "item": "valve adjustment",
+        "cost": 0.00,
+        "entryDate": "10/23/2020",
+        "place": "Lake Forest"
+    }
+]

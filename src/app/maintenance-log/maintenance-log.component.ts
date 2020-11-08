@@ -1,30 +1,80 @@
 import { Component, OnInit } from '@angular/core';
 import { MaintenanceLog } from './MaintenanceLog';
+import maintenanceLogData from "src/assets/data/maintenanceLogData.json";
 
 @Component({
   selector: 'app-maintenance-log',
   templateUrl: './templates/maintenance-log.component.html'
 })
 export class MaintenanceLogComponent implements OnInit {
+  MAINTENANCE_LOG_DATA: string = "maintenanceLogData";
   maintenanceLog: MaintenanceLog;
   maintenanceLogs: MaintenanceLog[];
+  rowNumber: number = 0;
 
   constructor() {
-    this.maintenanceLog = new MaintenanceLog();
-    
-    this.maintenanceLog.item = "oil change";
-    this.maintenanceLog.cost = 2.34;
-    this.maintenanceLog.entryDate = new Date("10/20/2020");
-    this.maintenanceLog.place = "Lake Forest";
-
     this.maintenanceLogs = new Array<MaintenanceLog>();
-    this.maintenanceLogs.push(this.maintenanceLog);
+
+    this.setLocalStorage();
+
+    this.getMaintenanceLogs();
   }
 
   ngOnInit(): void {
   }
+  
+  setLocalStorage() {
+    if (localStorage.getItem(this.MAINTENANCE_LOG_DATA) === null) {
+      this.saveToLocalStorage(JSON.stringify(maintenanceLogData));
+    }
+  }
+
+  /**
+   * load stored maintenance logs
+   */
+  private getMaintenanceLogs() {
+    var maintenanceLogLocalStorage = JSON.parse(localStorage.getItem(this.MAINTENANCE_LOG_DATA));
+
+    maintenanceLogLocalStorage.forEach(maintenanceLogDataItem => {
+      this.maintenanceLog = new MaintenanceLog();
+
+      this.maintenanceLog.id = maintenanceLogDataItem.id;
+      this.maintenanceLog.cost = maintenanceLogDataItem.cost;
+      this.maintenanceLog.entryDate = new Date(maintenanceLogDataItem.entryDate);
+      this.maintenanceLog.item = maintenanceLogDataItem.item;
+      this.maintenanceLog.place = maintenanceLogDataItem.place;
+
+      this.maintenanceLogs.push(this.maintenanceLog);
+
+      this.rowNumber = this.maintenanceLog.id;
+    });
+
+    // clear out the value because this object is used for data entry
+    this.maintenanceLog = new MaintenanceLog();
+  }
 
   saveNewMaintenanceLogItem(): void {
+    //increment the row number
+    this.rowNumber = this.rowNumber + 1;
+
+    this.maintenanceLog.id = this.rowNumber;
+
     this.maintenanceLogs.push(this.maintenanceLog);
+
+    var maintenanceLogItem = {
+      id: this.maintenanceLog.id,
+      item: this.maintenanceLog.item,
+      cost: this.maintenanceLog.cost,
+      entryDate: this.maintenanceLog.entryDate.toString(),
+      place: this.maintenanceLog.place
+    };
+
+    maintenanceLogData.push(maintenanceLogItem);
+
+    this.saveToLocalStorage(JSON.stringify(maintenanceLogData));
+  }
+
+  saveToLocalStorage(maintenanceLogData: string): void {
+    localStorage.setItem(this.MAINTENANCE_LOG_DATA, maintenanceLogData);
   }
 }
