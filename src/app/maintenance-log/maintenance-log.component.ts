@@ -30,7 +30,7 @@ export class MaintenanceLogComponent implements OnInit {
   }
 
   /**
-   * load stored maintenance logs
+   * load stored maintenance logs (historical log info)
    */
   private getMaintenanceLogs() {
     var maintenanceLogLocalStorage = JSON.parse(localStorage.getItem(this.MAINTENANCE_LOG_DATA));
@@ -59,8 +59,10 @@ export class MaintenanceLogComponent implements OnInit {
 
     this.maintenanceLog.id = this.rowNumber;
 
+    // updating the maintenanceLogData collection in the UI
     this.maintenanceLogs.push(this.maintenanceLog);
 
+    // this is where we save to the browser local storage!
     var maintenanceLogItem = {
       id: this.maintenanceLog.id,
       item: this.maintenanceLog.item,
@@ -69,6 +71,7 @@ export class MaintenanceLogComponent implements OnInit {
       place: this.maintenanceLog.place
     };
 
+    // updating the maintenanceLogData collection to save in storage (DB)
     maintenanceLogData.push(maintenanceLogItem);
 
     this.saveToLocalStorage(JSON.stringify(maintenanceLogData));
