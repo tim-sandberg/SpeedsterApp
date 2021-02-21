@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/new-web-app",
+            "outputPath": "dist/speedsters-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -125,7 +125,7 @@
       }
     }
   },
-  "defaultProject": "new-web-app",
+  "defaultProject": "speedsters-app",
   "cli": {
     "analytics": "0e8850c9-96d2-4207-b70b-934584790560"
   }

@@ -1,10 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { ClockComponent } from './clock/clock.component';
+import { HomeHeaderComponent } from './home/home-header-component';
 import { HomeComponent } from './home/home.component';
-import { MaintenanceLogComponent } from './maintenance-log/maintenance-log.component';
+import { PageNotFoundComponent } from './utils/errors/page-not-found-component';
 
 const routes: Routes = [
   {
@@ -16,27 +14,25 @@ const routes: Routes = [
     path: "home",
     component: HomeComponent
   }
-  , {
-    path: "clock",
-    component: ClockComponent
-  }
-  , {
-    path: "maintenance-log",
-    component: MaintenanceLogComponent
-  }
+
+  // page not found must reside here at the root.  all other routers will 
+  // fall to this, if their route is not found
+  , { path: "**", component: PageNotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
-    ClockComponent,
-    MaintenanceLogComponent
+    HomeHeaderComponent,
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule.forRoot(routes)],
+    RouterModule.forRoot(routes, {
+      useHash: false,
+      enableTracing: true
+    })
+  ],
   exports: [
-    FormsModule,
     RouterModule
   ]
 })
