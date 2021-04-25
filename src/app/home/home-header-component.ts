@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NAV_MAIN_URL } from '../common/SpeedstersConstants';
+import { NAV_LOGIN_URL } from '../common/SpeedstersConstants';
 
 @Component({
   selector: 'app-home-header',
@@ -14,7 +14,7 @@ export class HomeHeaderComponent implements OnInit {
   }
 
   btnLogin_Clicked(): void {
-    this._router.navigate([NAV_MAIN_URL]);
+    this._router.navigate([NAV_LOGIN_URL]);
   }
 
 }

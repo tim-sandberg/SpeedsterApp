@@ -4,6 +4,8 @@ import { HomeHeaderComponent } from './home/home-header-component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './utils/errors/page-not-found-component';
 
+const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
+
 const routes: Routes = [
   {
     path: "",
@@ -13,6 +15,10 @@ const routes: Routes = [
   , {
     path: "home",
     component: HomeComponent
+  }
+  , {
+    path: 'account',
+    loadChildren: accountModule
   }
 
   // page not found must reside here at the root.  all other routers will 
