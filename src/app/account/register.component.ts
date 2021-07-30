@@ -10,8 +10,8 @@ import { AlertService } from '../utils/alerts/alert.service';
 @Component({ templateUrl: './templates/register.component.html' })
 export class RegisterComponent implements OnInit {
     form: FormGroup;
-    loading = false;
-    submitted = false;
+    loading: boolean = false;
+    submitted: boolean = false;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -29,11 +29,11 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
         this.form = this.formBuilder.group({
             userID: [guid(), Validators.required],
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            username: ['', Validators.required],
-            email: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]]
+            firstName: ["", Validators.required],
+            lastName: ["", Validators.required],
+            username: ["", Validators.required],
+            email: ["", Validators.email],
+            password: ["", [Validators.required, Validators.minLength(6)]]
         });
     }
 
