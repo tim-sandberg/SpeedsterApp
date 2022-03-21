@@ -13,6 +13,9 @@ export class HomeHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * let's navigate to the login page
+   */
   btnLogin_Clicked(): void {
     this._router.navigate([NAV_LOGIN_URL]);
   }
